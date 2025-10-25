@@ -1,32 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flinto Systems</title>
-    <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flinto Systems</title>
+ 
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;600&display=swap" rel="stylesheet">
 
-        .centered-text {
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-            color: #333;
-        }
-    </style>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Lexend Deca', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      width: 100%;
+      background: #000;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+    body::before {
+      content: "";
+      position: absolute;
+      bottom: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80vw;
+      height: 270vh;
+      background: radial-gradient(circle at center, rgba(245,199,46,0.9) 0%, rgba(0,0,0,0) 70%);
+      filter: blur(60px);
+      opacity: 0.85;
+      animation: glowRise 2.8s ease-out forwards;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    @keyframes glowRise {
+      0% {
+        bottom: -80%;
+        opacity: 0;
+        transform: translateX(-50%) scale(0.8);
+      }
+      60% {
+        opacity: 1;
+      }
+      100% {
+        bottom: -5%;
+        transform: translateX(-50%) scale(1);
+      }
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 20px;
+    }
+
+    .title {
+      font-size: 6rem;
+      background: linear-gradient(180deg, #f2f0ea, #c6a700);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 600;
+      animation: fadeInUp 1.8s ease-out forwards;
+      animation-delay: 1.2s;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .subtitle {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1.8s ease-out forwards;
+      animation-delay: 1.5s;
+    }
+
+    .login-btn {
+      margin-top: 40px;
+      background: transparent;
+      border: 2px solid #e6c85c;
+      color: #e6c85c;
+      padding: 14px 70px;
+      font-size: 1.3rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1.8s ease-out forwards;
+      animation-delay: 1.9s;
+    }
+
+    .login-btn:hover {
+      background: #e6c85c;
+      color: #000;
+      box-shadow: 0 0 20px 5px rgba(230, 200, 92, 0.6);
+    }
+   
+
+footer {
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  z-index: 3;
+  font-size: 0.95rem;
+}
+
+footer a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #f5c72e;
+}
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes breathing {
+      0% { opacity: 0.85; transform: translateX(-50%) scale(1); }
+      50% { opacity: 1; transform: translateX(-50%) scale(1.05); }
+      100% { opacity: 0.85; transform: translateX(-50%) scale(1); }
+    }
+
+    body.loaded::before {
+      animation: breathing 5s ease-in-out infinite alternate;
+      bottom: -5%;
+    }
+    @media (max-width: 1024px) {
+      body::before {
+        width: 220vw;
+        height: 220vh;
+        bottom: -60%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .title {
+        font-size: 2.8rem;
+      }
+      .subtitle {
+        font-size: 1rem;
+      }
+      .login-btn {
+        padding: 10px 40px;
+        font-size: 1rem;
+      }
+
+      body::before {
+        width: 250vw;
+        height: 250vh;
+        bottom: -80%;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="centered-text">
-        Flinto Systems Will Open Soon
-      Site Undex Construction
-    </div>
+  <main class="content">
+    <h1 class="title">Flinto Systems</h1>
+    <p class="subtitle">Your Smart Event Management System</p>
+    <!-- <a class="login-btn" href="/login">Login</a> -->
+  </main>
+<footer>
+    <!-- <a   href="/privacy-policy">Privacy Policy</a>
+    <a href="/terms-and-conditions">Terms and Conditions</a> -->
+</footer>
+
+  <script>
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.body.classList.add("loaded");
+      }, 2800);
+    });
+  </script>
 </body>
 </html>
